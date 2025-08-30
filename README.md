@@ -1,12 +1,12 @@
 # THKS_TechJam25
 
-#### Our project tackles the problem of assessing the quality and relevance of location-based reviews, where noisy or generic comments often overshadow useful feedback. We built an end-to-end pipeline that cleans raw reviews, fine-tunes a transformer model, and outputs reliable quality scores that can be used to rank reviews for businesses and consumers.
+### Our project tackles the problem of assessing the quality and relevance of location-based reviews, where noisy or generic comments often overshadow useful feedback. We built an end-to-end pipeline that cleans raw reviews, fine-tunes a transformer model, and outputs reliable quality scores that can be used to rank reviews for businesses and consumers.
 
-#### Problem Statement Tackled
+### Problem Statement Tackled
 
 “How can we evaluate and enhance the quality and relevance of user-generated, location-based reviews so that businesses and consumers benefit from more trustworthy insights?”
 
-#### Our solution:
+### Our solution:
 
 Cleans raw data with a custom preprocessing script (review_preprocess.py) that removes URLs, symbols, and stopwords but keeps negations to preserve sentiment.
 
@@ -14,7 +14,7 @@ Fine-tunes RoBERTa (FacebookAI/roberta-base) on labeled review data to distingui
 
 Evaluates performance using accuracy, precision/recall, F1, and confusion matrices.
 
-#### Features & Functionality:
+### Features & Functionality:
 
 Preprocessing Engine – command-line tool for batch cleaning JSON/JSONL review datasets, outputting CSV/Parquet.
 
@@ -24,7 +24,7 @@ Transformer Classifier – RoBERTa model trained for multiclass classification o
 
 Evaluation & Visualization – reports and plots generated using scikit-learn, matplotlib, seaborn.
 
-#### Libraries & Frameworks
+### Libraries & Frameworks
 
 Transformers (Hugging Face) – model, tokenizer, trainer.
 
@@ -38,7 +38,7 @@ matplotlib, seaborn – visualization.
 
 tqdm, chardet – progress bars and robust file handling.
 
-#### Assets & Datasets
+### Assets & Datasets
 
 Google Local Reviews dataset – for training and validation.
 
