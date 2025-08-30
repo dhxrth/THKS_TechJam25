@@ -1,24 +1,3 @@
-"""
-review_preprocess.py
---------------------
-Single-file text preprocessing tool for review datasets.
-
-Features:
-- Lowercasing
-- URL removal
-- @/# symbol stripping (keeps words)
-- Non-alphanumeric cleanup
-- Tokenization
-- Stopword removal (keeps negations by default)
-- Optional stemming (NLTK PorterStemmer if available)
-- Reads JSONL (one JSON per line) or JSON array files
-- CLI to output CSV or Parquet
-
-Usage examples:
-    python review_preprocess.py --in reviews.jsonl --out cleaned.csv --text-col text
-    python review_preprocess.py --in reviews.json --out cleaned.parquet --stem --remove-numbers
-"""
-
 from __future__ import annotations
 import argparse
 import json
@@ -28,7 +7,6 @@ from typing import Iterable, List, Optional
 import pandas as pd
 import argparse, json, os, re
 from typing import Iterable, List, Optional
-import pandas as pd
 from json import JSONDecodeError
 
 
@@ -58,14 +36,7 @@ _MENTION_HASHTAG_RE = re.compile(r"[@#]")
 _NON_ALNUM_RE = re.compile(r"[^a-z0-9\s]")
 _WHITESPACE_RE = re.compile(r"\s+")
 
-# optional stemmer
-try:
-    from nltk.stem import PorterStemmer
-    _STEMMER = PorterStemmer()
-    _STEM_OK = True
-except:
-    _STEMMER = None
-    _STEM_OK = False
+
 
 def _tokenize(s: str) -> List[str]:
     return s.split() if s else []
@@ -98,9 +69,6 @@ def preprocess_text(
     toks = [t for t in toks if t and t not in stopwords]
     if remove_numbers:
         toks = [t for t in toks if not t.isdigit()]
-    if do_stem and _STEM_OK:
-        toks = [_STEMMER.stem(t) for t in toks]
-
     return " ".join(toks)
 
 def preprocess_dataframe(df: pd.DataFrame, *, text_col="text", out_col="text_clean", **kwargs):
@@ -131,42 +99,6 @@ def _read_jsonl(path: str) -> pd.DataFrame:
     if not rows:
         raise ValueError("JSONL file is empty or invalid.")
     return pd.DataFrame(rows)
-
-
-# def read_any_json(path: str) -> pd.DataFrame:
-#     if not os.path.exists(path):
-#         raise FileNotFoundError(f"Input file not found: {path}")
-#     if not os.path.isfile(path):
-#         raise IsADirectoryError(f"Input path is not a file: {path}")
-
-#     try:
-#         with open(path, "r", encoding="utf-8") as f:
-#             obj = json.load(f)
-#     except JSONDecodeError as e:
-#         if "Extra data" in str(e):
-#             raise ValueError(
-#                 "This file appears to contain multiple JSON objects (likely JSONL), "
-#                 "but your pipeline is configured for JSON arrays only.\n"
-#                 "Fix by converting to a JSON array (e.g., wrap in [ ... ]) "
-#                 "or switch to a JSONL-capable reader."
-#             ) from e
-#         raise
-
-#     if isinstance(obj, list):
-#         return pd.DataFrame(obj)
-
-#     if isinstance(obj, dict):
-#         for key in ("data", "items", "reviews"):
-#             val = obj.get(key, None)
-#             if isinstance(val, list):
-#                 return pd.DataFrame(val)
-#         return pd.DataFrame([obj])
-
-#     raise ValueError(
-#         "Unsupported JSON structure: expected a list of objects, or a dict "
-#         "containing a list under 'data', 'items', or 'reviews'."
-#     )
-
 
 
 
