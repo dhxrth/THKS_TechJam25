@@ -14,24 +14,17 @@ Fine-tunes RoBERTa (FacebookAI/roberta-base) on labeled review data to distingui
 
 Evaluates performance using accuracy, precision/recall, F1, and confusion matrices.
 
-Features & Functionality
+#### Features & Functionality:
 
-Preprocessing Engine – command-line tool for batch cleaning JSON/JSONL review datasets, outputting CSV/Parquet
-.
+Preprocessing Engine – command-line tool for batch cleaning JSON/JSONL review datasets, outputting CSV/Parquet.
 
 Custom Dataset Class – wraps reviews into a PyTorch Dataset with Hugging Face tokenization.
 
-Transformer Classifier – RoBERTa model trained for binary classification of review quality.
+Transformer Classifier – RoBERTa model trained for multiclass classification of review quality.
 
 Evaluation & Visualization – reports and plots generated using scikit-learn, matplotlib, seaborn.
 
-Development Tools
-
-VSCode – development environment.
-
-Jupyter Notebook / Google Colab – for training, experimentation, and GPU acceleration.
-
-Libraries & Frameworks
+#### Libraries & Frameworks
 
 Transformers (Hugging Face) – model, tokenizer, trainer.
 
@@ -45,7 +38,7 @@ matplotlib, seaborn – visualization.
 
 tqdm, chardet – progress bars and robust file handling.
 
-Assets & Datasets
+#### Assets & Datasets
 
 Google Local Reviews dataset – for training and validation.
 
