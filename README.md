@@ -1,12 +1,12 @@
 # THKS_TechJam25
 
-### Our project tackles the problem of assessing the quality and relevance of location-based reviews, where noisy or generic comments often overshadow useful feedback. We built an end-to-end pipeline that cleans raw reviews, fine-tunes a transformer model, and outputs reliable quality scores that can be used to rank reviews for businesses and consumers.
+#### Our project tackles the problem of assessing the quality and relevance of location-based reviews, where noisy or generic comments often overshadow useful feedback. We built an end-to-end pipeline that cleans raw reviews, fine-tunes a transformer model, and outputs reliable quality scores that can be used to rank reviews for businesses and consumers.
 
-#### Problem Statement Tackled
+##### Problem Statement Tackled
 
 “How can we evaluate and enhance the quality and relevance of user-generated, location-based reviews so that businesses and consumers benefit from more trustworthy insights?”
 
-####Our solution:
+##### Our solution:
 
 Cleans raw data with a custom preprocessing script (review_preprocess.py) that removes URLs, symbols, and stopwords but keeps negations to preserve sentiment.
 
